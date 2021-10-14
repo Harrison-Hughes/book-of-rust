@@ -5,7 +5,7 @@ fn main() {
     if n == 1 || n == 2 {
         println!("Fib({}) is: {}", n, n - 1);
     } else {
-        let mut seq: [u32; 2] = [0, 1];
+        let mut seq: [u128; 2] = [0, 1];
 
         for _ in 3..n+1 {
             seq[1] = seq[0] + seq[1];
@@ -16,12 +16,12 @@ fn main() {
 }
 
 // repeatadly calls read_input() until an int value is given
-fn get_int_input() -> u32 {
+fn get_int_input() -> u128 {
     let mut int_input: String;
     loop {
         println!("Enter n value:");
         int_input = read_input();
-        let int_input: u32 = match int_input.trim().parse() {
+        let int_input: u128 = match int_input.trim().parse() {
             Ok(num) => num,
             Err(_) => continue,
         }; 
