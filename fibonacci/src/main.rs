@@ -11,7 +11,7 @@ fn main() {
             seq[1] = seq[0] + seq[1];
             seq[0] = seq[1] - seq[0];
         }
-        println!("Fib({}) is: {}", n, seq[1]);
+        println!("\nFib({}) is: {}\n", n, seq[1]);
     }    
 }
 
@@ -23,7 +23,10 @@ fn get_int_input() -> u128 {
         int_input = read_input();
         let int_input: u128 = match int_input.trim().parse() {
             Ok(num) => num,
-            Err(_) => continue,
+            Err(_) => {
+                println!("\nNot a valid entry, must be a posisitive integer!\n");
+                continue
+            },
         }; 
         return int_input
     }
