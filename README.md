@@ -1,5 +1,5 @@
 # RUST
-A genereal repository for execises while I'm learning rust
+A genereal repository of rust-related execises
 
 ## Links
 * book of rust: https://doc.rust-lang.org/book/
