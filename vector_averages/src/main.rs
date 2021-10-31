@@ -1,10 +1,10 @@
 use rand::{thread_rng, Rng};
+use std::collections::HashMap;
 
 fn main() {
     let mut rng = thread_rng();
-    let vector: Vec<u32> = (0..10).map(|_| rng.gen_range(0..100)).collect();
+    let vector: Vec<u32> = (0..100).map(|_| rng.gen_range(0..100)).collect();
 
-    println!("Results for vector {:?}", vector);
     println!(
         "Mean: {}, Median: {}, Mode: {}",
         mean(&vector),
@@ -19,21 +19,32 @@ fn mean(vector: &Vec<u32>) -> f32 {
         sum += i
     }
 
-    (sum / vector.len() as u32) as f32
+    sum as f32 / vector.len() as f32
 }
 
-fn median(vector: &Vec<u32>) -> u32 {
+fn median(vector: &Vec<u32>) -> f32 {
     let mut vec = vector.clone();
     vec.sort();
 
-    vec[vec.len() / 2]
+    if vec.len() % 2 == 0 {
+        (vec[vec.len() / 2] as f32 + vec[vec.len() / 2 - 1] as f32) / 2.0
+    } else {
+        vec[vec.len() / 2] as f32
+    }
+
 }
 
-fn mode(vector: &Vec<u32>) -> u32 {
-    let mut values = HashMap::new();
+fn mode(vector: &Vec<u32>) -> &u32 {
+    let mut count = HashMap::new();
 
     for i in vector {
-        let count = values.entry(word).or_insert(0);
-        *count += 1;
+        *count.entry(i).or_insert(0) += 1;
     }
+
+    count
+        .into_iter()
+        .max_by_key(|&(_, count)| count)
+        .map(|(val, _)| val)
+        .expect("Cannot compute the mode of zero numbers")
+
 }
