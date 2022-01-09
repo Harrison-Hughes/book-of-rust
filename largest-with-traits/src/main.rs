@@ -6,9 +6,9 @@ fn largest_by_copy<T: PartialOrd + Copy>(list: &[T]) -> T {
             largest = item;
         }
     }
-
     largest
 }
+
 fn largest_by_clone<T: PartialOrd + Clone>(list: &[T]) -> T {
     let mut largest = list[0].clone();
 
@@ -17,7 +17,6 @@ fn largest_by_clone<T: PartialOrd + Clone>(list: &[T]) -> T {
             largest = item.clone();
         }
     }
-
     largest
 }
 
@@ -29,7 +28,6 @@ fn largest_by_type_reference<T: PartialOrd>(list: &[T]) -> &T {
             largest = item;
         }
     }
-
     largest
 }
 
